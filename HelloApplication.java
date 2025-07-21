@@ -11,13 +11,39 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class HelloApplication extends Application {
+
     private Stage primaryStage;
+    private Usuario usuarioEnSesion = null;
+
+    boolean produccion = false;
 
     @Override
     public void start(Stage stage) {
-        this.primaryStage = stage;
-        mostrarPantallaInicio();
+        if(produccion) {
+            this.primaryStage = stage;
+            mostrarPantallaInicio();
+        }else {
+            test();
+        }
+    }
+
+    public void test(){
+        System.out.println("Modo test...");
+        Usuario alfredo = new Usuario("Alfredo","1234","12345678","admin");
+        Entrada miEntrada = new Entrada("Texto de la entrada.",alfredo,"mesa");
+        Ticket miTicket = new Ticket(miEntrada);
+        Entrada otraEntrada = new Entrada("Recordas encargar bidones de agua!",alfredo,"mesa");
+        miTicket.agregarEntrada(otraEntrada);
+        System.out.println(miTicket);
+
+        Oficina miOficina = new Oficina("mesa");
+        miOficina.agregarUsuario(alfredo);
+        miOficina.recibirTicket(miTicket);
+        System.out.println(miOficina);
+
     }
 
 
@@ -25,16 +51,27 @@ public class HelloApplication extends Application {
     public void mostrarPantallaInicio() {
         VBox layout = new VBox();
 
-        Label labUser = new Label("Usuario");
+        Label     labUser = new Label("Usuario");
         TextField texUser = new TextField();
-        Label labPass = new Label("Contraseña");
-
+        Label     labPass = new Label("Contraseña");
         TextField texPass = new TextField();
 
         Button btnContinuar = new Button("Ir al panel");
         btnContinuar.setOnAction(e -> {
-            System.out.println("mostrarPantallaInicio -> mostrarPanelPrincipal");
-            mostrarPanelPrincipal();
+
+            System.out.println(texUser.getText());
+            System.out.println(texPass.getText());
+
+            boolean boo_validar = Seguridad.validar(texUser.getText(),texPass.getText());
+            if(boo_validar && (usuarioEnSesion == null)) {
+                usuarioEnSesion = Seguridad.dameUsuario(texUser.getText(),texPass.getText());
+                System.out.println("Usuario en sesión: "+usuarioEnSesion);
+                mostrarPanelPrincipal();
+                System.out.println("mostrarPantallaInicio -> mostrarPanelPrincipal");
+            }else{
+                mostrarPantallaInicio();
+                System.out.println("Error de login");
+            }
         });
         layout.getChildren().addAll(labUser, texUser, labPass, texPass, btnContinuar);
 
@@ -113,6 +150,12 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         launch(args);
+        /*
+        ArrayList<Usuario> usu = Modelo.dameUsuarios();
+        for(int i=0 ; i<usu.size() ; i++){
+            System.out.println(usu.get(i));
+        }*/
+        System.out.println(Seguridad.dameUsuario("algo","algo"));;
     }
 
 
