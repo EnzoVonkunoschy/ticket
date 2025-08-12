@@ -4,39 +4,69 @@ import java.util.ArrayList;
 
 public class Modelo {
 
-    public static ArrayList<Usuario> dameUsuarios(){
-        Usuario usuario1 = new Usuario("Enzo","1234","2610123456","admin");
-        Usuario usuario2 = new Usuario("Pedro","1234","2610123456","usuario");
-        Usuario usuario3 = new Usuario("Carla","1234","2610123456","usuario");
-        Usuario usuario4 = new Usuario("Dana","1234","2610123456","usuario");
+    private static Modelo instancia;
 
-        ArrayList<Usuario> usuarios = new ArrayList<>();
-        usuarios.add(usuario1);
-        usuarios.add(usuario2);
-        usuarios.add(usuario3);
-        usuarios.add(usuario4);
+    private Modelo() {};
 
-        return usuarios;
+    public static Modelo getInstancia(){
+        if(instancia == null){
+            instancia = new Modelo();
+        }
+        return instancia;
     }
 
+   public void agregarOficina(Oficina ofi){
+       System.out.println("--> Modelo 'agregarOficina");
 
-    public static ArrayList<Oficina> dameOficinas(){
-        ArrayList<Oficina> oficinas = new ArrayList<>();
+       String ruta = System.getProperty("user.dir");
+       String storage = ruta+"\\src\\main\\java\\com\\example\\";
+       String storageOficinas = storage + "oficinas.txt";
 
-        ArrayList<Usuario> usuarios_ = dameUsuarios();
-
-        Ticket unTicket = new Ticket();
-        Entrada unEntrada = new Entrada("Texto de la entrada 1 ticket 1",usuarios_.get(0),"mesa");
-        Entrada dosEntrada = new Entrada("Texto de la entrada 2 ticket 1",usuarios_.get(1),"taller");
-
-        Oficina administracion = new Oficina("Administracion");
-        administracion.agregarUsuario(usuarios_.get(0));
-        administracion.agregarUsuario(usuarios_.get(1));
-        administracion.recibirTicket(unTicket);
-
-
-        return null;
-}
+       ArrayList<Oficina> colOfi = dameOficinas();
+        if(!colOfi.contains(ofi)){
+            colOfi.add(ofi);
+        }else{
+            System.out.println("La oficina ya estaba agregada !");
+        }
 
 
+       guardarOficinas(colOfi);
+   }
+
+   public ArrayList<Oficina> dameOficinas(){
+       String ruta = System.getProperty("user.dir");
+       String storage = ruta+"\\src\\main\\java\\com\\example\\";
+       String storageOficinas = storage + "oficinas.txt";
+
+        ArrayList<Oficina> objectx = LocalStorage.getItem(storageOficinas);
+
+       return objectx;
+   }
+
+   public void guardarOficinas(ArrayList<Oficina>  colOfi){
+
+       String ruta = System.getProperty("user.dir");
+       String storage = ruta+"\\src\\main\\java\\com\\example\\";
+       String storageOficinas = storage + "oficinas.txt";
+
+       LocalStorage.setItem(storageOficinas, colOfi);
+   }
+
+   public void eliminarOficina(String refOficina){
+
+       ArrayList<Oficina> colOfi = dameOficinas();
+        int indice = -1;
+       for(int i=0 ; i<colOfi.size() ; i++) {
+           System.out.println(colOfi.get(i).getNombre()+"<--");
+           if(colOfi.get(i).getNombre().equals(refOficina)){
+
+               System.out.println("La coincidencia i es: "+ i);
+               indice = i;
+           }
+       }
+       if(indice != -1){
+           colOfi.remove(indice);
+       }
+       guardarOficinas(colOfi);
+   }
 }

@@ -10,21 +10,29 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.controlsfx.control.PropertySheet;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class HelloApplication extends Application {
 
     private Stage primaryStage;
-    private Usuario usuarioEnSesion = null;
+    private static Usuario usuarioEnSesion = null;
 
-    boolean produccion = false;
+    private TextField texUser = new TextField();
+
+    //boolean produccion = false;
+    boolean produccion = true;
 
     @Override
     public void start(Stage stage) {
         if(produccion) {
-            this.primaryStage = stage;
-            mostrarPantallaInicio();
+            Controlador controlador = Controlador.getInstancia();
+            Seguridad seguridad = Seguridad.getInstancia();
+
+            v_Login miLogin = v_Login.getInstancia(stage);
+
         }else {
             test();
         }
@@ -32,23 +40,84 @@ public class HelloApplication extends Application {
 
     public void test(){
         System.out.println("Modo test...");
-        Usuario alfredo = new Usuario("Alfredo","1234","12345678","admin");
-        Entrada miEntrada = new Entrada("Texto de la entrada.",alfredo,"mesa");
-        Ticket miTicket = new Ticket(miEntrada);
-        Entrada otraEntrada = new Entrada("Recordas encargar bidones de agua!",alfredo,"mesa");
-        miTicket.agregarEntrada(otraEntrada);
-        System.out.println(miTicket);
 
-        Oficina miOficina = new Oficina("mesa");
-        miOficina.agregarUsuario(alfredo);
-        miOficina.recibirTicket(miTicket);
-        System.out.println(miOficina);
+        Usuario usuario = new Usuario("Bob Esponja","1234","2610121212","admin");
+        Modelo           modelo = Modelo.getInstancia();
+        Controlador controlador = Controlador.getInstancia();
 
+        Oficina nuevaOficina = new Oficina("Personal");
+
+
+        /*
+        //System.out.println(" "+controlador.dameOficinas(usuario));
+
+        //controlador.agregarOficina(usuario,nuevaOficina);
+        modelo.agregarOficina(nuevaOficina);
+        String refOficina = "Personal";
+        //controlador.eliminarOficina(usuario, refOficina);
+
+        System.out.println(controlador.dameOficinas(usuario));
+
+        /*
+        modelo.agregarOficina(nuevaOficina);
+        System.out.println(modelo.dameOficinas());
+
+        modelo.eliminarOficina(nuevaOficina);
+        System.out.println(modelo.dameOficinas());*/
+
+        }
+
+
+
+
+    public TextField getTextUser(){
+        return this.texUser;
     }
 
+  /*  public void mostrarPantallaInicio() {
+        VBox layout = new VBox();
+
+        Label     labUser = new Label("Usuario");
+        //TextField texUser = new TextField();
+        Label     labPass = new Label("Contraseña");
+        TextField texPass = new TextField();
 
 
-    public void mostrarPantallaInicio() {
+
+        Button btnContinuar = new Button("Ir al panel");
+        btnContinuar.setOnAction(e -> {
+
+            System.out.println(texUser.getText());
+            System.out.println(texPass.getText());
+
+            boolean boo_validar = Seguridad.validar(texUser.getText(),texPass.getText());
+            if(boo_validar && (usuarioEnSesion == null)) {
+                usuarioEnSesion = Seguridad.dameUsuario(texUser.getText(),texPass.getText());
+                System.out.println("Usuario en sesión: "+usuarioEnSesion);
+                mostrarPanelPrincipal();
+                System.out.println("mostrarPantallaInicio -> mostrarPanelPrincipal");
+            }else{
+                mostrarPantallaInicio();
+                System.out.println("Error de login");
+            }
+        });
+        layout.getChildren().addAll(labUser, texUser, labPass, texPass, btnContinuar);
+
+
+
+        Scene escena = new Scene(layout, 400, 300);
+
+        presentador("Pantalla de inicio",escena);
+
+    } */
+
+    public void presentador(String titulo, Scene escena){
+        primaryStage.setScene(escena);
+        primaryStage.setTitle(titulo);
+        primaryStage.show();
+    }
+
+    /* public void mostrarPantallaInicio() {
         VBox layout = new VBox();
 
         Label     labUser = new Label("Usuario");
@@ -81,7 +150,9 @@ public class HelloApplication extends Application {
         primaryStage.setScene(escena);
         primaryStage.setTitle("Pantalla de inicio");
         primaryStage.show();
-    }
+    } */
+
+
 
     public void registrarIngreso(){
 
@@ -135,27 +206,70 @@ public class HelloApplication extends Application {
 
         btnRegistrarIngreso.setOnAction(e -> registrarIngreso());
 
+
+        Button btnNueOfi = new Button("Nueva Oficina");
+        btnNueOfi.setLayoutX(10);
+        btnNueOfi.setLayoutY(90);
+
+        btnNueOfi.setOnAction(e -> nuevaOficina());
+
         Button btnNuevoTicket = new Button("Nuevo Ticket");
         btnNuevoTicket.setLayoutX(10);
         btnNuevoTicket.setLayoutY(10);
         btnNuevoTicket.setOnAction(e-> nuevoTicket());
 
-        layout.getChildren().addAll(btnSalir, btnRegistrarIngreso, btnNuevoTicket);
+        layout.getChildren().addAll(btnSalir, btnRegistrarIngreso, btnNuevoTicket, btnNueOfi);
 
         Scene escena = new Scene(layout, 500, 400);
         primaryStage.setScene(escena);
-        primaryStage.setTitle("Panel principal");
+        primaryStage.setTitle("mostrarPanelPrincipal()");
         primaryStage.show();
+    }
+
+    public void nuevaOficina(){
+        final Pane layout = new Pane();
+
+        Label lbl_nuevaOficina = new Label("Nueva Oficina");
+        lbl_nuevaOficina.setLayoutX(10);
+        lbl_nuevaOficina.setLayoutY(10);
+
+        Label lbl_nombreOficina = new Label("Nombre de la oficina: ");
+        lbl_nombreOficina.setLayoutX(10);
+        lbl_nombreOficina.setLayoutY(50);
+
+        TextField txt_nombreOficina = new TextField();
+        txt_nombreOficina.setLayoutX(50);
+        txt_nombreOficina.setLayoutY(50);
+
+        Button btn_nuevaOficina = new Button("Agregar Oficina");
+        btn_nuevaOficina.setLayoutX(10);
+        btn_nuevaOficina.setLayoutY(90);
+
+        layout.getChildren().addAll(lbl_nuevaOficina, txt_nombreOficina, btn_nuevaOficina);
+
+        final Scene[] sce_nuevaOficina = {new Scene(layout, 640, 480)};
+
+        btn_nuevaOficina.setOnAction(e ->{
+            Oficina nuevaOficina = new Oficina(txt_nombreOficina.getText());
+            Controlador controlador = Controlador.getInstancia();
+            controlador.agregarOficina(this.usuarioEnSesion ,nuevaOficina);
+            //layout.getChildren().removeIf(node -> node instanceof Label);
+            layout.getChildren().removeAll();
+            sce_nuevaOficina[0] = null;
+            mostrarPanelPrincipal();
+        });
+
+
+
+        primaryStage.setScene(sce_nuevaOficina[0]);
+        primaryStage.setTitle("nuevaOficina()");
+        primaryStage.show();
+
     }
 
     public static void main(String[] args) {
         launch(args);
-        /*
-        ArrayList<Usuario> usu = Modelo.dameUsuarios();
-        for(int i=0 ; i<usu.size() ; i++){
-            System.out.println(usu.get(i));
-        }*/
-        System.out.println(Seguridad.dameUsuario("algo","algo"));;
+
     }
 
 

@@ -1,6 +1,8 @@
 package com.example.ticket;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
 
     // Atributos privados
     private String nombre;
