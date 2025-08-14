@@ -39,7 +39,10 @@ public class Modelo {
        String storageOficinas = storage + "oficinas.txt";
 
         ArrayList<Oficina> objectx = LocalStorage.getItem(storageOficinas);
-
+        //agreger nueva linea de codigo
+       if (objectx == null) {
+           return new ArrayList<Oficina>();
+       }
        return objectx;
    }
 
