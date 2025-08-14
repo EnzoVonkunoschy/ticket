@@ -18,7 +18,7 @@ class LocalStorage{
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	 @SuppressWarnings("unchecked")
 	public static <T> T getItem(String nomArchivo){
 		try {
 			FileInputStream archivoEntrada = new FileInputStream(nomArchivo);
