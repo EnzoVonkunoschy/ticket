@@ -22,8 +22,8 @@ public class HelloApplication extends Application {
 
     private TextField texUser = new TextField();
 
-    //boolean produccion = false;
-    boolean produccion = true;
+    boolean produccion = false;
+    //boolean produccion = true;
 
     @Override
     public void start(Stage stage) {
@@ -40,34 +40,27 @@ public class HelloApplication extends Application {
 
     public void test(){
         System.out.println("Modo test...");
-
-        Usuario usuario = new Usuario("Bob Esponja","1234","2610121212","admin");
         Modelo           modelo = Modelo.getInstancia();
-        Controlador controlador = Controlador.getInstancia();
 
-        Oficina nuevaOficina = new Oficina("Personal");
+        Usuario usuario0 = new Usuario("Bob Esponja"      ,"4321","2610121212","admin"   );
+        Usuario usuario1 = new Usuario("Patricio Estrella","1234","2610121212","operador");
+        Usuario usuario2 = new Usuario("Calamardo"        ,"1234","2610121212","operador");
+        Usuario usuario3 = new Usuario("Don Cangrejo"     ,"1234","2610121212","operador");
 
+        ArrayList<Usuario> colUsu = new ArrayList<>();
+        colUsu.add(usuario0);
+        colUsu.add(usuario1);
+        colUsu.add(usuario2);
 
-        /*
-        //System.out.println(" "+controlador.dameOficinas(usuario));
+        modelo.guardarUsuarios(colUsu);
 
-        //controlador.agregarOficina(usuario,nuevaOficina);
-        modelo.agregarOficina(nuevaOficina);
-        String refOficina = "Personal";
-        //controlador.eliminarOficina(usuario, refOficina);
+        modelo.agregarUsuario(usuario2);
 
-        System.out.println(controlador.dameOficinas(usuario));
+        modelo.eliminarUsuario(usuario0.getNombre());
 
-        /*
-        modelo.agregarOficina(nuevaOficina);
-        System.out.println(modelo.dameOficinas());
+        System.out.println(modelo.dameUsuarios());
 
-        modelo.eliminarOficina(nuevaOficina);
-        System.out.println(modelo.dameOficinas());*/
-
-        }
-
-
+    }
 
 
     public TextField getTextUser(){
