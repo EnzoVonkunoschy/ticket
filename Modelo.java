@@ -15,6 +15,8 @@ public class Modelo {
         return instancia;
     }
 
+    // Sección Oficinas
+
    public void agregarOficina(Oficina ofi){
        System.out.println("--> Modelo 'agregarOficina");
 
@@ -72,4 +74,15 @@ public class Modelo {
        }
        guardarOficinas(colOfi);
    }
+
+   // Sección Usuarios
+
+    public void guardarUsuarios(ArrayList<Usuario> colUsu){};
+
+    public void agregarUsuario(Usuario usu){};
+
+    public void eliminarUsuario(String refUsuario){};
+
+    public ArrayList<Usuario> dameUsuarios(){return new ArrayList<>();}
+
 }
