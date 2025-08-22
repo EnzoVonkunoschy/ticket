@@ -1,6 +1,7 @@
 package com.example.ticket;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Modelo {
 
@@ -81,7 +82,21 @@ public class Modelo {
 
     public void agregarUsuario(Usuario usu){};
 
-    public void eliminarUsuario(String refUsuario){};
+    public void eliminarUsuario(String refUsuario){
+        ArrayList<Usuario> colUsu = dameUsuarios();
+
+        Iterator<Usuario> iter = colUsu.iterator();
+        while (iter.hasNext()) {
+            Usuario usuario = iter.next();
+            if (usuario.getNombre().equals(refUsuario)) {
+                iter.remove();
+                System.out.println("Usuario con nombre '" + refUsuario + "' eliminado.");
+                break;
+            }
+        }
+
+        guardarUsuarios(colUsu);
+    };
 
     public ArrayList<Usuario> dameUsuarios(){return new ArrayList<>();}
 
