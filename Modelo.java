@@ -1,4 +1,4 @@
-package com.example.ticket;
+package com.example.ticketlujan3;
 
 import java.util.ArrayList;
 
@@ -83,6 +83,7 @@ public class Modelo {
 
     public void eliminarUsuario(String refUsuario){};
 
-    public ArrayList<Usuario> dameUsuarios(){return new ArrayList<>();}
+    public ArrayList<Usuario> dameUsuarios(){
+        return new ArrayList<>();}
 
 }

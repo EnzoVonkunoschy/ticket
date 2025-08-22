@@ -1,4 +1,4 @@
-package com.example.ticket;
+package com.example.ticketlujan3;
 
 import java.io.Serializable;
 

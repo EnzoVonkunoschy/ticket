@@ -1,4 +1,4 @@
-package com.example.ticket;
+package com.example.ticketlujan3;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
