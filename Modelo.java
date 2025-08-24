@@ -79,7 +79,21 @@ public class Modelo {
 
     public void guardarUsuarios(ArrayList<Usuario> colUsu){};
 
-    public void agregarUsuario(Usuario usu){};
+    public void agregarUsuario(Usuario usu){
+        System.out.println("--> Modelo 'agregarUsuario");
+
+        String ruta = System.getProperty("user.dir");
+        String storage = ruta+"\\src\\main\\java\\com\\example\\";
+        String storageUsuario = storage + "usuarios.txt";
+
+        ArrayList<Usuario> agreUsu = dameUsuarios();
+        if(!agreUsu.contains(usu)){
+            agreUsu.add(usu);
+        }else{
+            System.out.println("El usuario ya estaba agregada !");
+        }
+        guardarUsuarios(agreUsu);
+    };
 
     public void eliminarUsuario(String refUsuario){};
 
