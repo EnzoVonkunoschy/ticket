@@ -12,18 +12,18 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.controlsfx.control.PropertySheet;
 
-import javax.swing.*;
+//import javax.swing.*;
 import java.util.ArrayList;
 
 public class HelloApplication extends Application {
 
     private Stage primaryStage;
-    private static Usuario usuarioEnSesion = null;
+   private static Usuario usuarioEnSesion = null;
 
     private TextField texUser = new TextField();
 
-    //boolean produccion = false;
-    boolean produccion = true;
+    boolean produccion = false;
+    //boolean produccion = true;
 
     @Override
     public void start(Stage stage) {
@@ -47,6 +47,14 @@ public class HelloApplication extends Application {
 
         Oficina nuevaOficina = new Oficina("Personal");
 
+        ArrayList<Usuario> lista = new ArrayList<>();
+
+        lista.add(new Usuario("orlando", "12345","23545654","tesorero"));
+        lista.add(new Usuario("eli", "124678", "23454","lider"));
+
+        usuario.guardarUsuarios(lista);
+
+        System.out.println(lista);
 
         /*
         //System.out.println(" "+controlador.dameOficinas(usuario));
@@ -267,9 +275,10 @@ public class HelloApplication extends Application {
 
     }
 
+
+
     public static void main(String[] args) {
         launch(args);
-
     }
 
 

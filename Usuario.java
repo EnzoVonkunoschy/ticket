@@ -1,6 +1,9 @@
 package com.example.ticket;
 
+import javafx.collections.ArrayChangeListener;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Usuario implements Serializable {
 
@@ -9,6 +12,7 @@ public class Usuario implements Serializable {
     private String clave;
     private String mobil;
     private String rol;
+    private ArrayList<Usuario> usuarios;
 
     // Constructor
     public Usuario(String nombre, String clave, String mobil, String rol) {
@@ -72,5 +76,17 @@ public class Usuario implements Serializable {
                 "nombre='" + nombre + '\'' +
                 ", rol='" + rol + '\'' +
                 '}';
+    }
+
+    public void guardarUsuarios(ArrayList<Usuario>colUsu){
+         this.usuarios = colUsu;
+    }
+
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(ArrayList<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 }
