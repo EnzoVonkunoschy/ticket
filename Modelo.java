@@ -1,7 +1,6 @@
 package com.example.ticket;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Modelo {
 
@@ -84,17 +83,18 @@ public class Modelo {
 
     public void eliminarUsuario(String refUsuario){
         ArrayList<Usuario> colUsu = dameUsuarios();
+        int indice = -1;
+        for(int i=0 ; i<colUsu.size() ; i++) {
+            System.out.println(colUsu.get(i).getNombre()+"<--");
+            if(colUsu.get(i).getNombre().equals(refUsuario)){
 
-        Iterator<Usuario> iter = colUsu.iterator();
-        while (iter.hasNext()) {
-            Usuario usuario = iter.next();
-            if (usuario.getNombre().equals(refUsuario)) {
-                iter.remove();
-                System.out.println("Usuario con nombre '" + refUsuario + "' eliminado.");
-                break;
+                System.out.println("La coincidencia i es: "+ i);
+                indice = i;
             }
         }
-
+        if(indice != -1){
+            colUsu.remove(indice);
+        }
         guardarUsuarios(colUsu);
     };
 
