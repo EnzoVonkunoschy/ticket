@@ -90,7 +90,7 @@ public class Modelo {
         if(!agreUsu.contains(usu)){
             agreUsu.add(usu);
         }else{
-            System.out.println("El usuario ya estaba agregada !");
+            System.out.println("El usuario ya estaba agregado !");
         }
         guardarUsuarios(agreUsu);
     };
