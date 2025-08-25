@@ -81,7 +81,19 @@ public class Modelo {
 
     public void agregarUsuario(Usuario usu){};
 
-    public void eliminarUsuario(String refUsuario){};
+    public void eliminarUsuario(String refUsuario){
+        ArrayList<Usuario> colUsu = dameUsuarios();
+        int indice = -1;
+        for(int i = 0;i<colUsu.size();i++){
+            if(colUsu.get(i).getNombre().equals(refUsuario)){
+                indice = i;
+            }
+        }
+       if(indice != -1){
+           colUsu.remove(indice);
+           guardarUsuarios(colUsu);
+       }
+    };
 
     public ArrayList<Usuario> dameUsuarios(){return new ArrayList<>();}
 

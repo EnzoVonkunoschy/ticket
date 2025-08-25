@@ -40,6 +40,7 @@ public class HelloApplication extends Application {
 
     public void test(){
         System.out.println("Modo test...");
+
         Modelo           modelo = Modelo.getInstancia();
 
         Usuario usuario0 = new Usuario("Bob Esponja"      ,"4321","2610121212","admin"   );
@@ -59,6 +60,8 @@ public class HelloApplication extends Application {
         modelo.eliminarUsuario(usuario0.getNombre());
 
         System.out.println(modelo.dameUsuarios());
+
+
 
     }
 
