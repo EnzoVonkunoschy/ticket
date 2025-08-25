@@ -1,9 +1,5 @@
 package com.example.ticket;
 
-import com.sun.tools.jconsole.JConsoleContext;
-
-import java.util.ArrayList;
-
 public class Seguridad {
 
     private static Seguridad instancia;

@@ -83,6 +83,15 @@ public class Modelo {
 
     public void eliminarUsuario(String refUsuario){};
 
-    public ArrayList<Usuario> dameUsuarios(){return new ArrayList<>();}
+    public ArrayList<Usuario> dameUsuarios() {
+        String ruta = System.getProperty("user.dir");
+        String storage = ruta + "\\src\\main\\java\\com\\example\\";
+        String storageUsuarios = storage + "usuarios.txt";
 
+        ArrayList<Usuario> objetx = LocalStorage.getItem(storageUsuarios);
+        if (objetx == null) {
+            return new ArrayList<Usuario>();
+        }
+        return objetx;
+    }
 }
