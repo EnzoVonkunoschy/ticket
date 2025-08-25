@@ -1,4 +1,4 @@
-package com.example.ticket;
+package com.example.tickettt;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

@@ -1,4 +1,4 @@
-package com.example.ticket;
+package com.example.tickettt;
 
 public class Entrada {
     private String texto;

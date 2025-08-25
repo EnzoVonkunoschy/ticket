@@ -1,4 +1,4 @@
-package com.example.ticket;
+package com.example.tickettt;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
