@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.controlsfx.control.PropertySheet;
 
-import javax.swing.*;
+//import javax.swing.*;
 import java.util.ArrayList;
 
 public class HelloApplication extends Application {
@@ -42,6 +42,7 @@ public class HelloApplication extends Application {
         System.out.println("Modo test...");
         Modelo           modelo = Modelo.getInstancia();
 
+
         Usuario usuario0 = new Usuario("Bob Esponja"      ,"4321","2610121212","admin"   );
         Usuario usuario1 = new Usuario("Patricio Estrella","1234","2610121212","operador");
         Usuario usuario2 = new Usuario("Calamardo"        ,"1234","2610121212","operador");
@@ -51,6 +52,9 @@ public class HelloApplication extends Application {
         colUsu.add(usuario0);
         colUsu.add(usuario1);
         colUsu.add(usuario2);
+        colUsu.add(usuario3);
+
+        System.out.println("Usuarios guardados: " + modelo.dameUsuarios());
 
         modelo.guardarUsuarios(colUsu);
 
