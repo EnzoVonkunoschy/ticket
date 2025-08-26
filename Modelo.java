@@ -3,6 +3,7 @@ package com.example.ticket;
 import java.util.ArrayList;
 
 public class Modelo {
+    private ArrayList<Usuario> usuarios = new ArrayList<>();
 
     private static Modelo instancia;
 
@@ -79,8 +80,16 @@ public class Modelo {
 
     public void guardarUsuarios(ArrayList<Usuario> colUsu){};
 
-    public void agregarUsuario(Usuario usu){};
-
+    public void agregarUsuario(Usuario usu){
+        if(usu != null){
+            if(!usuarios.contains(usu)){ // Evita duplicados según equals() de Usuario
+                usuarios.add(usu);
+                System.out.println("Usuario agregado: " + usu.getNombre());
+            } else {
+                System.out.println("El usuario ya existe: " + usu.getNombre());
+            }
+        }
+    }
     public void eliminarUsuario(String refUsuario){};
 
     public ArrayList<Usuario> dameUsuarios(){return new ArrayList<>();}
