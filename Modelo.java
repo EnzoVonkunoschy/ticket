@@ -81,7 +81,20 @@ public class Modelo {
 
     public void agregarUsuario(Usuario usu){};
 
-    public void eliminarUsuario(String refUsuario){};
+    public void eliminarUsuario(String refUsuario){
+        ArrayList<Usuario> colUsu = dameUsuarios();
+
+        boolean eliminado = colUsu.removeIf(usu -> usu.getNombre().equals(refUsuario));
+
+        if (eliminado) {
+            System.out.println("El usuario ingresado fue eliminado: " + refUsuario);
+
+            guardarUsuarios(colUsu);
+        } else {
+            System.out.println("No se encontró el usuario ingresado: " + refUsuario);
+        }
+
+    };
 
     public ArrayList<Usuario> dameUsuarios(){return new ArrayList<>();}
 
