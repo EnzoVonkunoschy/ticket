@@ -81,7 +81,10 @@ public class Modelo {
        String storage = ruta + "\\src\\main\\java\\com\\example\\";
        String storageUsuarios = storage + "usuarios.txt";
 
-       LocalStorage.setItem(storageUsuario
+       LocalStorage.setItem(storageUsuarios, colUsu);
+   }
+
+
 
     public void guardarUsuarios(ArrayList<Usuario> colUsu){};
 
