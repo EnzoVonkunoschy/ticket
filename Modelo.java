@@ -84,10 +84,6 @@ public class Modelo {
        LocalStorage.setItem(storageUsuarios, colUsu);
    }
 
-
-
-    public void guardarUsuarios(ArrayList<Usuario> colUsu){};
-
     public void agregarUsuario(Usuario usu){};
 
     public void eliminarUsuario(String refUsuario){};
