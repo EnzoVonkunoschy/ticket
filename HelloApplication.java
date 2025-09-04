@@ -54,7 +54,7 @@ public class HelloApplication extends Application {
 
         modelo.guardarUsuarios(colUsu);
 
-        modelo.agregarUsuario(usuario2);
+        modelo.agregarUsuario(usuario3);
 
         modelo.eliminarUsuario(usuario0.getNombre());
 
