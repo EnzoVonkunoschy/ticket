@@ -76,13 +76,50 @@ public class Modelo {
    }
 
    // Sección Usuarios
+   public void guardarUsuarios(ArrayList<Usuario> colUsu){
+       String ruta = System.getProperty("user.dir");
+       String storage = ruta + "\\src\\main\\java\\com\\example\\";
+       String storageUsuarios = storage + "usuarios.txt";
 
-    public void guardarUsuarios(ArrayList<Usuario> colUsu){};
+       LocalStorage.setItem(storageUsuarios, colUsu);
+   }
 
-    public void agregarUsuario(Usuario usu){};
+    public void agregarUsuario(Usuario usu){
+        System.out.println("--> Modelo 'agregarUsuario");
 
-    public void eliminarUsuario(String refUsuario){};
+        String ruta = System.getProperty("user.dir");
+        String storage = ruta+"\\src\\main\\java\\com\\example\\";
+        String storageUsuario = storage + "usuarios.txt";
 
-    public ArrayList<Usuario> dameUsuarios(){return new ArrayList<>();}
+        ArrayList<Usuario> agreUsu = dameUsuarios();
+        if(!agreUsu.contains(usu)){
+            agreUsu.add(usu);
+        }else{
+            System.out.println("El usuario ya estaba agregado !");
+        }
+        guardarUsuarios(agreUsu);
+    };
+
+    public void eliminarUsuario(String refUsuario){
+        ArrayList<Usuario> colUsu = dameUsuarios();
+
+        boolean eliminado = colUsu.removeIf(usuario -> usuario.getNombre().equals(refUsuario));
+        if (eliminado){
+            guardarUsuarios(colUsu);
+        }else{
+            System.out.println("no se encontro el usuario con el nombre: " + refUsuario);
+        }
+    };
+
+    public ArrayList<Usuario> dameUsuarios() {
+    String ruta = System.getProperty("user.dir");
+    String storage = ruta + "\\src\\main\\java\\com\\example\\";
+    String storageUsuarios = storage + "usuarios.txt";
+
+    ArrayList<Usuario> objetx = LocalStorage.getItem(storageUsuarios);
+    if (objetx == null) {
+        return new ArrayList<Usuario>();
+    }
+    return objetx;}
 
 }
