@@ -76,6 +76,7 @@ public class Modelo {
    }
 
    // Sección Usuarios
+
    public void guardarUsuarios(ArrayList<Usuario> colUsu){
        String ruta = System.getProperty("user.dir");
        String storage = ruta + "\\src\\main\\java\\com\\example\\";

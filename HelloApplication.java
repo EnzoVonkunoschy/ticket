@@ -22,8 +22,8 @@ public class HelloApplication extends Application {
 
     private TextField texUser = new TextField();
 
-    boolean produccion = false;
-    //boolean produccion = true;
+    //boolean produccion = false;
+    boolean produccion = true;
 
     @Override
     public void start(Stage stage) {
@@ -40,6 +40,35 @@ public class HelloApplication extends Application {
 
     public void test(){
         System.out.println("Modo test...");
+        Controlador controlador = Controlador.getInstancia();
+
+        Usuario usuario0 = new Usuario("Bob Esponja"      ,"4321","2610121212","admin"   );
+        Usuario usuario1 = new Usuario("Patricio Estrella","1234","2610121212","operador");
+        Usuario usuario2 = new Usuario("Calamardo"        ,"1234","2610121212","operador");
+        Usuario usuario3 = new Usuario("Don Cangrejo"     ,"1234","2610121212","operador");
+
+        ArrayList<Usuario> colUsu = new ArrayList<>();
+        colUsu.add(usuario0);
+        colUsu.add(usuario1);
+        colUsu.add(usuario2);
+
+        controlador.guardarUsuarios(colUsu, usuario0);
+
+        controlador.agregarUsuario(usuario3, usuario0);
+
+        controlador.eliminarUsuario(usuario0.getNombre(), usuario0);
+
+        System.out.println(controlador.dameUsuarios(), usuario0);
+
+
+        controlador.guardarUsuarios(colUsu, usuario1);
+
+        controlador.agregarUsuario(usuario3, usuario1);
+
+        controlador.eliminarUsuario(usuario0.getNombre(), usuario1);
+
+        System.out.println(controlador.dameUsuarios(), usuario1);
+        /*
         Modelo           modelo = Modelo.getInstancia();
 
         Usuario usuario0 = new Usuario("Bob Esponja"      ,"4321","2610121212","admin"   );
@@ -58,7 +87,7 @@ public class HelloApplication extends Application {
 
         modelo.eliminarUsuario(usuario0.getNombre());
 
-        System.out.println(modelo.dameUsuarios());
+        System.out.println(modelo.dameUsuarios()); */
 
     }
 
