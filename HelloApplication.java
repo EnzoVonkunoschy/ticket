@@ -22,8 +22,8 @@ public class HelloApplication extends Application {
 
     private TextField texUser = new TextField();
 
-    //boolean produccion = false;
-    boolean produccion = true;
+    boolean produccion = false;
+    //boolean produccion = true;
 
     @Override
     public void start(Stage stage) {
@@ -58,8 +58,7 @@ public class HelloApplication extends Application {
 
         controlador.eliminarUsuario(usuario0.getNombre(), usuario0);
 
-        System.out.println(controlador.dameUsuarios(), usuario0);
-
+        System.out.println(controlador.dameUsuarios(usuario0));
 
         controlador.guardarUsuarios(colUsu, usuario1);
 
@@ -67,7 +66,7 @@ public class HelloApplication extends Application {
 
         controlador.eliminarUsuario(usuario0.getNombre(), usuario1);
 
-        System.out.println(controlador.dameUsuarios(), usuario1);
+        System.out.println(controlador.dameUsuarios(usuario1));
         /*
         Modelo           modelo = Modelo.getInstancia();
 
