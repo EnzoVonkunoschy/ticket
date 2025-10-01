@@ -2,7 +2,7 @@ package com.example.ticket;
 
 import java.util.ArrayList;
 
-public class Controlador {
+public class Controlador implements gestionarUsuarios {
 
     private static Controlador instancia;
     private Modelo modelo = Modelo.getInstancia();
@@ -42,6 +42,41 @@ public class Controlador {
     public void nuevaOficina(Oficina ofi, Usuario usu){
         Modelo modelo = Modelo.getInstancia();
 
+    }
+
+    @Override
+    public void guardarUsuarios(ArrayList<Usuario> colUsu, Usuario enSesion) {
+        if (enSesion != null && enSesion.getRol().equals("admin")){
+            modelo.guardarUsuarios(colUsu);
+        }else{
+            System.out.println("No tiene permiso");
+        }
+    }
+
+    @Override
+    public void agregarUsuario(Usuario usu, Usuario enSesion) {
+        if (enSesion != null && enSesion.getRol().equals("admin")){
+            modelo.agregarUsuario(usu);
+        }else{
+            System.out.println("No tiene permiso");
+        }
+    }
+
+    @Override
+    public void eliminarUsuario(String refUsuario, Usuario enSesion) {
+        if (enSesion != null && enSesion.getRol().equals("admin")){
+            modelo.eliminarUsuario(refUsuario);
+        }else{
+            System.out.println("No tiene permiso");
+        }
+    }
+
+    @Override
+    public ArrayList<Usuario> dameUsuarios(Usuario enSesion) {
+        if (enSesion != null){
+            return modelo.dameUsuarios();
+        }
+       return null;
     }
 
     // Usuarios --------------------------------
