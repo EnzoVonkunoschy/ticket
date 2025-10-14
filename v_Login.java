@@ -43,12 +43,11 @@ public class v_Login {
             System.out.println("button pushed...");
 
 
-            //if(seguridad.validar(this.txtUser.getText(),this.txtPass.getText())){
-            if(true){
+            if(seguridad.validar(this.txtUser.getText(),this.txtPass.getText())){
                 Usuario usu = seguridad.getUsuario(this.txtUser.getText(),this.txtPass.getText());
                 v_Menu.getInstancia(stage, usu);
             }else{
-                lblErro.setVisible(true);
+                lblErro.setVisible(false);
                 System.out.println("Error de login!");
             }
 
