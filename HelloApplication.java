@@ -22,12 +22,13 @@ public class HelloApplication extends Application {
 
     private TextField texUser = new TextField();
 
-    boolean produccion = false;
-    //boolean produccion = true;
+    //boolean produccion = false;
+    boolean produccion = true;
 
     @Override
     public void start(Stage stage) {
         if(produccion) {
+            test(); // Se agrega aquí para garantizar la existencia de los usuarios
             Controlador controlador = Controlador.getInstancia();
             Seguridad seguridad = Seguridad.getInstancia();
 
@@ -47,46 +48,12 @@ public class HelloApplication extends Application {
         Usuario usuario2 = new Usuario("Calamardo"        ,"1234","2610121212","operador");
         Usuario usuario3 = new Usuario("Don Cangrejo"     ,"1234","2610121212","operador");
 
-        ArrayList<Usuario> colUsu = new ArrayList<>();
-        colUsu.add(usuario0);
-        colUsu.add(usuario1);
-        colUsu.add(usuario2);
-
-        controlador.guardarUsuarios(colUsu, usuario0);
-
-        controlador.agregarUsuario(usuario3, usuario0);
-
-        controlador.eliminarUsuario(usuario0.getNombre(), usuario0);
+        controlador.agregarUsuario(usuario0,usuario0);
+        controlador.agregarUsuario(usuario1,usuario0);
+        controlador.agregarUsuario(usuario2,usuario0);
+        controlador.agregarUsuario(usuario3,usuario0);
 
         System.out.println(controlador.dameUsuarios(usuario0));
-
-        controlador.guardarUsuarios(colUsu, usuario1);
-
-        controlador.agregarUsuario(usuario3, usuario1);
-
-        controlador.eliminarUsuario(usuario0.getNombre(), usuario1);
-
-        System.out.println(controlador.dameUsuarios(usuario1));
-        /*
-        Modelo           modelo = Modelo.getInstancia();
-
-        Usuario usuario0 = new Usuario("Bob Esponja"      ,"4321","2610121212","admin"   );
-        Usuario usuario1 = new Usuario("Patricio Estrella","1234","2610121212","operador");
-        Usuario usuario2 = new Usuario("Calamardo"        ,"1234","2610121212","operador");
-        Usuario usuario3 = new Usuario("Don Cangrejo"     ,"1234","2610121212","operador");
-
-        ArrayList<Usuario> colUsu = new ArrayList<>();
-        colUsu.add(usuario0);
-        colUsu.add(usuario1);
-        colUsu.add(usuario2);
-
-        modelo.guardarUsuarios(colUsu);
-
-        modelo.agregarUsuario(usuario3);
-
-        modelo.eliminarUsuario(usuario0.getNombre());
-
-        System.out.println(modelo.dameUsuarios()); */
 
     }
 
@@ -95,85 +62,11 @@ public class HelloApplication extends Application {
         return this.texUser;
     }
 
-  /*  public void mostrarPantallaInicio() {
-        VBox layout = new VBox();
-
-        Label     labUser = new Label("Usuario");
-        //TextField texUser = new TextField();
-        Label     labPass = new Label("Contraseña");
-        TextField texPass = new TextField();
-
-
-
-        Button btnContinuar = new Button("Ir al panel");
-        btnContinuar.setOnAction(e -> {
-
-            System.out.println(texUser.getText());
-            System.out.println(texPass.getText());
-
-            boolean boo_validar = Seguridad.validar(texUser.getText(),texPass.getText());
-            if(boo_validar && (usuarioEnSesion == null)) {
-                usuarioEnSesion = Seguridad.dameUsuario(texUser.getText(),texPass.getText());
-                System.out.println("Usuario en sesión: "+usuarioEnSesion);
-                mostrarPanelPrincipal();
-                System.out.println("mostrarPantallaInicio -> mostrarPanelPrincipal");
-            }else{
-                mostrarPantallaInicio();
-                System.out.println("Error de login");
-            }
-        });
-        layout.getChildren().addAll(labUser, texUser, labPass, texPass, btnContinuar);
-
-
-
-        Scene escena = new Scene(layout, 400, 300);
-
-        presentador("Pantalla de inicio",escena);
-
-    } */
-
     public void presentador(String titulo, Scene escena){
         primaryStage.setScene(escena);
         primaryStage.setTitle(titulo);
         primaryStage.show();
     }
-
-    /* public void mostrarPantallaInicio() {
-        VBox layout = new VBox();
-
-        Label     labUser = new Label("Usuario");
-        TextField texUser = new TextField();
-        Label     labPass = new Label("Contraseña");
-        TextField texPass = new TextField();
-
-        Button btnContinuar = new Button("Ir al panel");
-        btnContinuar.setOnAction(e -> {
-
-            System.out.println(texUser.getText());
-            System.out.println(texPass.getText());
-
-            boolean boo_validar = Seguridad.validar(texUser.getText(),texPass.getText());
-            if(boo_validar && (usuarioEnSesion == null)) {
-                usuarioEnSesion = Seguridad.dameUsuario(texUser.getText(),texPass.getText());
-                System.out.println("Usuario en sesión: "+usuarioEnSesion);
-                mostrarPanelPrincipal();
-                System.out.println("mostrarPantallaInicio -> mostrarPanelPrincipal");
-            }else{
-                mostrarPantallaInicio();
-                System.out.println("Error de login");
-            }
-        });
-        layout.getChildren().addAll(labUser, texUser, labPass, texPass, btnContinuar);
-
-
-
-        Scene escena = new Scene(layout, 400, 300);
-        primaryStage.setScene(escena);
-        primaryStage.setTitle("Pantalla de inicio");
-        primaryStage.show();
-    } */
-
-
 
     public void registrarIngreso(){
 
@@ -280,8 +173,6 @@ public class HelloApplication extends Application {
             mostrarPanelPrincipal();
         });
 
-
-
         primaryStage.setScene(sce_nuevaOficina[0]);
         primaryStage.setTitle("nuevaOficina()");
         primaryStage.show();
@@ -292,6 +183,5 @@ public class HelloApplication extends Application {
         launch(args);
 
     }
-
 
 }

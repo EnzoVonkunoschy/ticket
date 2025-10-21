@@ -31,13 +31,20 @@ public class v_Menu {
         btnNuevoUsuario   = new Button("Nuevo Usuario");
         btnSalir          = new Button("Salir");
 
-        panel.getChildren().addAll(label, btnNuevaOficina, btnListarOficinas, btnSalir);
+        panel.getChildren().addAll(label, btnNuevaOficina, btnListarOficinas, btnNuevoUsuario, btnSalir);
+
+        btnNuevoUsuario.setOnAction(e->{
+
+        });
 
         btnNuevaOficina.setOnAction(e->{
             v_NuevaOficina nuevaOficina = v_NuevaOficina.getInstancia(stage, usu);
         });
         btnListarOficinas.setOnAction(e->{
             v_ListarOficinas.getInstancia(stage, usu);
+        });
+        btnNuevoUsuario.setOnAction(e->{
+            v_NuevoUsuario.getInstancia(stage, usu);
         });
 
         scen = new Scene(panel, 640,480);
