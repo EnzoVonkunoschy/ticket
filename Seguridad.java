@@ -28,18 +28,20 @@ public class Seguridad {
         controlador.agregarOficina(usu, ofi);
     }
 
-    public boolean validar(String usu, String cla){
-        Usuario adminTemp = new Usuario("", "", "", "");
+
+    public Usuario validar(String usu, String cla){
+        Usuario adminTemp = new Usuario("x", "", "", "admin");
         ArrayList<Usuario> listaUsuarios = controlador.dameUsuarios(adminTemp);
 
-        listaUsuarios.add(new Usuario("Lucho","2341","2616667777","admin"));
-
         for(Usuario usua : listaUsuarios){
+            System.out.println(usua);
             if (usua.getNombre().equals(usu) && usua.getClave().equals(cla)){
-                return true;
+                System.out.println("Usuario encontrado");
+                System.out.println(usua);
+                return usua;
             }
         }
-        return false;
+        return null;
 
     }
 
