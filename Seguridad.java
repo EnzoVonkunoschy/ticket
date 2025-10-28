@@ -45,6 +45,14 @@ public class Seguridad {
 
     }
 
+    public void agregarUsuario(Usuario usu, Usuario enSesion) {
+        if (enSesion.getRol().equals("admin")) {
+            controlador.agregarUsuario(usu, enSesion);
+        } else {
+            System.out.println("No tiene permisos.");
+        }
+    }
+
     public String ok(){
         return "Seguridad: OK";
     }
