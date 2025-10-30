@@ -28,6 +28,14 @@ public class Seguridad {
         controlador.agregarOficina(usu, ofi);
     }
 
+    public void agregarUsuario(Usuario nuevoUsu, Usuario enSesion){
+        System.out.println("--> Seguridad 'agregarUsuario'");
+
+        // El diagrama muestra: 1° Nuevo Usuario, 2° Usuario en Sesión
+        // Se llama al Controlador con el nuevo usuario y el usuario en sesión (para validar permisos)
+        // El Controlador debe decidir si el usuario en Sesión tiene permiso.
+        controlador.agregarUsuario(nuevoUsu, enSesion);
+    }
 
     public Usuario validar(String usu, String cla){
         Usuario adminTemp = new Usuario("x", "", "", "admin");
