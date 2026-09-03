@@ -25,7 +25,7 @@ public class v_NuevaOficina {
         lblNombre      = new Label("Nombre de Oficina: ");
         txtNombre      = new TextField();
         btnAceptar     = new Button("Aceptar");
-        btnVolver     = new Button("Volver");
+        btnVolver      = new Button("Volver");
 
         panel.getChildren().addAll(lblDescripcion, lblNombre, txtNombre, btnAceptar, btnVolver);
 

@@ -21,7 +21,7 @@ public class Modelo {
        System.out.println("--> Modelo 'agregarOficina");
 
        String ruta = System.getProperty("user.dir");
-       String storage = ruta+"\\src\\main\\java\\com\\example\\";
+       String storage = ruta+"/src/main/java/com/example/";
        String storageOficinas = storage + "oficinas.txt";
 
        ArrayList<Oficina> colOfi = dameOficinas();
@@ -37,7 +37,7 @@ public class Modelo {
 
    public ArrayList<Oficina> dameOficinas(){
        String ruta = System.getProperty("user.dir");
-       String storage = ruta+"\\src\\main\\java\\com\\example\\";
+       String storage = ruta + "/src/main/java/com/example/";
        String storageOficinas = storage + "oficinas.txt";
 
         ArrayList<Oficina> objectx = LocalStorage.getItem(storageOficinas);
@@ -51,7 +51,7 @@ public class Modelo {
    public void guardarOficinas(ArrayList<Oficina>  colOfi){
 
        String ruta = System.getProperty("user.dir");
-       String storage = ruta+"\\src\\main\\java\\com\\example\\";
+       String storage = ruta + "/src/main/java/com/example/";
        String storageOficinas = storage + "oficinas.txt";
 
        LocalStorage.setItem(storageOficinas, colOfi);
@@ -79,7 +79,7 @@ public class Modelo {
 
    public void guardarUsuarios(ArrayList<Usuario> colUsu){
        String ruta = System.getProperty("user.dir");
-       String storage = ruta + "\\src\\main\\java\\com\\example\\";
+       String storage = ruta + "/src/main/java/com/example/";
        String storageUsuarios = storage + "usuarios.txt";
 
        LocalStorage.setItem(storageUsuarios, colUsu);
@@ -89,7 +89,7 @@ public class Modelo {
         System.out.println("--> Modelo 'agregarUsuario");
 
         String ruta = System.getProperty("user.dir");
-        String storage = ruta+"\\src\\main\\java\\com\\example\\";
+        String storage = ruta + "/src/main/java/com/example/";
         String storageUsuario = storage + "usuarios.txt";
 
         ArrayList<Usuario> agreUsu = dameUsuarios();
@@ -114,7 +114,7 @@ public class Modelo {
 
     public ArrayList<Usuario> dameUsuarios() {
     String ruta = System.getProperty("user.dir");
-    String storage = ruta + "\\src\\main\\java\\com\\example\\";
+    String storage = ruta + "/src/main/java/com/example/";
     String storageUsuarios = storage + "usuarios.txt";
 
     ArrayList<Usuario> objetx = LocalStorage.getItem(storageUsuarios);

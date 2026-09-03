@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.controlsfx.control.PropertySheet;
+//import org.controlsfx.control.PropertySheet;
 
 
 import java.util.ArrayList;
@@ -20,22 +20,30 @@ public class HelloApplication extends Application {
     private Stage primaryStage;
     private static Usuario usuarioEnSesion = null;
 
+
     private TextField texUser = new TextField();
+
 
     //boolean produccion = false;
     boolean produccion = true;
+    boolean bypass = true;
 
     @Override
     public void start(Stage stage) {
-        if(produccion) {
-            test(); // Se agrega aquí para garantizar la existencia de los usuarios
-            Controlador controlador = Controlador.getInstancia();
-            Seguridad seguridad = Seguridad.getInstancia();
+        if(bypass) {
+            usuarioEnSesion=  new Usuario("Dev","","","admin");
+            v_Menu.getInstancia(stage,usuarioEnSesion);
+        }else{
+            if (produccion) {
+                test(); // Se agrega aquí para garantizar la existencia de los usuarios
+                Controlador controlador = Controlador.getInstancia();
+                Seguridad seguridad = Seguridad.getInstancia();
 
-            v_Login miLogin = v_Login.getInstancia(stage);
+                v_Login miLogin = v_Login.getInstancia(stage);
 
-        }else {
-            test();
+            } else {
+                test();
+            }
         }
     }
 

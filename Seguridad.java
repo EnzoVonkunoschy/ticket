@@ -28,6 +28,14 @@ public class Seguridad {
         controlador.agregarOficina(usu, ofi);
     }
 
+    public void nuevoUser(Usuario user , Usuario usu){
+        System.out.println("--> Seguridadd 'nuevoUser'");
+        System.out.println(user);
+        System.out.println(usu);
+        Controlador controlador = Controlador.getInstancia();
+        controlador.agregarUsuario(user, usu);
+    }
+
 
     public Usuario validar(String usu, String cla){
         Usuario adminTemp = new Usuario("x", "", "", "admin");
