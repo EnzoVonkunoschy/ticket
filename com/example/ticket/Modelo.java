@@ -1,4 +1,4 @@
-package com.example.ticket;
+package com.example.ticket.com.example.ticket;
 
 import java.util.ArrayList;
 
@@ -121,6 +121,4 @@ public class Modelo {
     if (objetx == null) {
         return new ArrayList<Usuario>();
     }
-    return objetx;}
-
-}
+    r

@@ -1,4 +1,4 @@
-package com.example.ticket;
+package com.example.ticket.com.example.ticket;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -41,6 +41,4 @@ public class v_NuevoUsuario {
             stage.setScene(instancia.scene);
             stage.show();
         }
-        return instancia;
-    }
-}
+        return ins

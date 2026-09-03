@@ -1,4 +1,4 @@
-package com.example.ticket;
+package com.example.ticket.com.example.ticket;
 
 //import com.sun.tools.jconsole.JConsoleContext;
 
@@ -56,7 +56,4 @@ public class Seguridad {
             return new Usuario("Lucho","2341","2616667777","admin");
         }else{
             return null;
-        }
-
-    }
-}
+    

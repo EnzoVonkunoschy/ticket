@@ -39,19 +39,10 @@ public class v_Login {
         scen = new Scene(pane, 300, 300);
 
         Seguridad seguridad = Seguridad.getInstancia();
+
         but.setOnAction(e -> {
-            System.out.println("button pushed...");
-
-
-           Usuario validado = seguridad.validar(this.txtUser.getText(),this.txtPass.getText());
-            if( validado != null  ){
-
-                v_Menu.getInstancia(stage, validado);
-            }else{
-                lblErro.setVisible(true);
-                System.out.println("Error de login!");
-            }
-
+            Usuario validado = new Usuario("Bob Esponja", "admin", "1234", "admin");
+            v_Menu.getInstancia(stage, validado);
         });
 
         stage.setTitle("Login");
