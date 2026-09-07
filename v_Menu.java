@@ -17,6 +17,7 @@ public class v_Menu {
     Button btnNuevaOficina;
     Button btnListarOficinas;
     Button btnNuevoUsuario;
+    Button btnListarUsuarios;
     Button btnSalir;
 
     Scene scen;
@@ -29,9 +30,10 @@ public class v_Menu {
         btnNuevaOficina   = new Button("Nueva Oficina");
         btnListarOficinas = new Button("Listar Oficinas");
         btnNuevoUsuario   = new Button("Nuevo Usuario");
+        btnListarUsuarios = new Button("Listar Usuarios");
         btnSalir          = new Button("Salir");
 
-        panel.getChildren().addAll(label, btnNuevaOficina, btnListarOficinas, btnNuevoUsuario, btnSalir);
+        panel.getChildren().addAll(label, btnNuevaOficina, btnListarOficinas, btnNuevoUsuario,btnListarUsuarios, btnSalir);
 
         btnNuevoUsuario.setOnAction(e->{
 
@@ -44,7 +46,10 @@ public class v_Menu {
             v_ListarOficinas.getInstancia(stage, usu);
         });
         btnNuevoUsuario.setOnAction(e->{
-            v_NuevoUsuario.getInstancia(stage, usu);
+            v_NuevoUsuario nuevoUsuario =v_NuevoUsuario.getInstancia(stage, usu);
+        });
+        btnListarUsuarios.setOnAction(event -> {
+            v_ListarUsuarios.getInstancia(stage, usu);
         });
 
         scen = new Scene(panel, 640,480);
