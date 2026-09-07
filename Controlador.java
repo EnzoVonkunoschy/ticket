@@ -78,6 +78,9 @@ public class Controlador implements gestionarUsuarios {
         }
        return null;
     }
+    public ArrayList<Usuario> dameUsuarios() {
+        return modelo.dameUsuarios();
+    }
 
     // Usuarios --------------------------------
 

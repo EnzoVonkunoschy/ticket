@@ -30,8 +30,7 @@ public class Seguridad {
 
 
     public Usuario validar(String usu, String cla){
-        Usuario adminTemp = new Usuario("x", "", "", "admin");
-        ArrayList<Usuario> listaUsuarios = controlador.dameUsuarios(adminTemp);
+        ArrayList<Usuario> listaUsuarios = controlador.dameUsuarios();
 
         for(Usuario usua : listaUsuarios){
             System.out.println(usua);
@@ -45,13 +44,23 @@ public class Seguridad {
 
     }
 
+    public Usuario buscarUsuarioPorNombre(String nombre){
+        ArrayList<Usuario> listaUsuarios = controlador.dameUsuarios();
+
+        for(Usuario usuario : listaUsuarios){
+            if(usuario.getNombre().equalsIgnoreCase(nombre)){
+                return usuario;
+            }
+        }
+        return null;
+    }
+
     public String ok(){
         return "Seguridad: OK";
     }
 
     public  Usuario getUsuario(String usu, String cla){
         //ArrayList<Usuario> mod_usuarios = Modelo.dameUsuarios();
-        //Retornar el usuario que coincide
         if (usu.equals("Lucho") && cla.equals("2341")){
             return new Usuario("Lucho","2341","2616667777","admin");
         }else{
