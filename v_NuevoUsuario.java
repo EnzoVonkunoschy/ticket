@@ -2,7 +2,7 @@ package com.example.ticket;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -17,6 +17,7 @@ public class v_NuevoUsuario {
     private TextField txtPassword;
     private Label     lblMobil;
     private TextField txtMobil;
+    private ComboBox<String> cmbRol;
     private Button    btnAceptar;
     private Button    btnVolver;
 
@@ -32,18 +33,22 @@ public class v_NuevoUsuario {
         txtPassword    = new TextField();
         lblMobil       = new Label("Teléfono: ");
         txtMobil       = new TextField();
+        cmbRol       = new ComboBox<>();
         btnAceptar     = new Button("Aceptar");
         btnVolver      = new Button("Volver");
 
-        panel.getChildren().addAll(lblDescripcion, lblNombre, txtNombre, lblPassword, txtPassword, lblMobil, txtMobil, btnAceptar, btnVolver);
-
+        panel.getChildren().addAll(lblDescripcion, lblNombre, txtNombre, lblPassword, txtPassword, lblMobil, txtMobil,cmbRol, btnAceptar, btnVolver);
+        cmbRol.getItems().addAll("administrador", "usuario");
+        cmbRol.setPromptText("rol");
         btnAceptar.setOnAction(e->{
             String nomUsu = txtNombre.getText();
             String passUsu = txtPassword.getText();
             String mobUsu = txtMobil.getText();
+            String rolUsu = cmbRol.getValue();
+
 
             if(nomUsu.length() > 0 && passUsu.length() > 0) {
-                Usuario unUsuario = new Usuario(nomUsu, passUsu, mobUsu, "usuario");
+                Usuario unUsuario = new Usuario(nomUsu, passUsu, mobUsu, rolUsu);
                 Controlador controlador = Controlador.getInstancia();
                 controlador.agregarUsuario(unUsuario, usu);
             }

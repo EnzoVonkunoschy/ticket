@@ -35,9 +35,16 @@ public class v_ListarUsuarios {
 
         TableColumn<Usuario, String> nombreCol = new TableColumn<>("Nombre");
         nombreCol.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getNombre()));
+        TableColumn<Usuario, String> mobilCol = new TableColumn<>("Móvil");
 
-        // Columna de edad eliminada
-        tableView.getColumns().add(nombreCol);
+        mobilCol.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getMobil()));
+
+        TableColumn<Usuario, String> rolCol = new TableColumn<>("Rol");
+        rolCol.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getRol()));
+
+        tableView.getColumns().addAll(nombreCol, mobilCol, rolCol);
+
+
 
         // Comportamiento
         btnVolver.setOnAction(e->{
