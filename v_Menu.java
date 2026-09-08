@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.geometry.Pos;
 
 public class v_Menu {
 
@@ -17,6 +18,7 @@ public class v_Menu {
     Button btnNuevaOficina;
     Button btnListarOficinas;
     Button btnNuevoUsuario;
+    Button btnListarUsuarios;
     Button btnSalir;
 
     Scene scen;
@@ -24,14 +26,18 @@ public class v_Menu {
     private v_Menu(Stage stage, Usuario usu){
         panel = new VBox();
 
+        panel.setSpacing(20);
+        panel.setAlignment(Pos.CENTER);
+
         label = new Label("Menú:");
 
         btnNuevaOficina   = new Button("Nueva Oficina");
         btnListarOficinas = new Button("Listar Oficinas");
         btnNuevoUsuario   = new Button("Nuevo Usuario");
+        btnListarUsuarios = new Button("Listar Usuarios");
         btnSalir          = new Button("Salir");
 
-        panel.getChildren().addAll(label, btnNuevaOficina, btnListarOficinas, btnNuevoUsuario, btnSalir);
+        panel.getChildren().addAll(label, btnNuevaOficina, btnListarOficinas, btnNuevoUsuario, btnListarUsuarios, btnSalir);
 
         btnNuevoUsuario.setOnAction(e->{
 
