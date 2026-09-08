@@ -21,7 +21,6 @@ public class v_Login {
 
     private v_Login(Stage stage) {
 
-
         pane = new VBox();
 
         user    = new Label("Usuario");
@@ -32,26 +31,16 @@ public class v_Login {
         lblErro = new Label("Error: Usuario o contraseña incorrecto/s");
 
         lblErro.setStyle("-fx-text-fill: red;");
-
         lblErro.setVisible(false);
 
         pane.getChildren().addAll(user, txtUser, pass, txtPass, but, lblErro);
         scen = new Scene(pane, 300, 300);
 
-        Seguridad seguridad = Seguridad.getInstancia();
+        // Bypass: ingresa directamente al hacer clic en Aceptar
         but.setOnAction(e -> {
-            System.out.println("button pushed...");
-
-
-           Usuario validado = seguridad.validar(this.txtUser.getText(),this.txtPass.getText());
-            if( validado != null  ){
-
-                v_Menu.getInstancia(stage, validado);
-            }else{
-                lblErro.setVisible(true);
-                System.out.println("Error de login!");
-            }
-
+            System.out.println("Ingreso con bypass...");
+            Usuario usuarioBypass = new Usuario("admin", "admin", "0000", "admin");
+            v_Menu.getInstancia(stage, usuarioBypass);
         });
 
         stage.setTitle("Login");
@@ -68,5 +57,4 @@ public class v_Login {
         }
         return instancia;
     }
-
 }

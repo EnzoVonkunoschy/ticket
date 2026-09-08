@@ -99,7 +99,7 @@ public class Modelo {
             System.out.println("El usuario ya estaba agregado !");
         }
         guardarUsuarios(agreUsu);
-    };
+    }
 
     public void eliminarUsuario(String refUsuario){
         ArrayList<Usuario> colUsu = dameUsuarios();

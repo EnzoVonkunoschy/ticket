@@ -1,6 +1,5 @@
 package com.example.ticket;
 
-
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,6 +16,7 @@ public class v_Menu {
     Button btnNuevaOficina;
     Button btnListarOficinas;
     Button btnNuevoUsuario;
+    Button btnListarUsuarios; // Boton para listar usuarios
     Button btnSalir;
 
     Scene scen;
@@ -29,27 +29,43 @@ public class v_Menu {
         btnNuevaOficina   = new Button("Nueva Oficina");
         btnListarOficinas = new Button("Listar Oficinas");
         btnNuevoUsuario   = new Button("Nuevo Usuario");
+        btnListarUsuarios = new Button("Listar Usuarios");
         btnSalir          = new Button("Salir");
 
-        panel.getChildren().addAll(label, btnNuevaOficina, btnListarOficinas, btnNuevoUsuario, btnSalir);
 
-        btnNuevoUsuario.setOnAction(e->{
+        panel.getChildren().addAll(
+                label,
+                btnNuevaOficina,
+                btnListarOficinas,
+                btnNuevoUsuario,
+                btnListarUsuarios,
+                btnSalir
+        );
 
+
+        btnNuevaOficina.setOnAction(e -> {
+            v_NuevaOficina.getInstancia(stage, usu);
         });
 
-        btnNuevaOficina.setOnAction(e->{
-            v_NuevaOficina nuevaOficina = v_NuevaOficina.getInstancia(stage, usu);
-        });
-        btnListarOficinas.setOnAction(e->{
+        btnListarOficinas.setOnAction(e -> {
             v_ListarOficinas.getInstancia(stage, usu);
         });
-        btnNuevoUsuario.setOnAction(e->{
+
+        btnNuevoUsuario.setOnAction(e -> {
             v_NuevoUsuario.getInstancia(stage, usu);
         });
 
-        scen = new Scene(panel, 640,480);
+        btnListarUsuarios.setOnAction(e -> {
+            v_ListarUsuarios.getInstancia(stage, usu);
+        });
 
-        stage.setTitle("Menú: "+usu.getNombre()+" - "+ usu.getRol());
+        btnSalir.setOnAction(e -> {
+            stage.close();
+        });
+
+        scen = new Scene(panel, 640, 480);
+
+        stage.setTitle("Menú: " + usu.getNombre() + " - " + usu.getRol());
         stage.setScene(scen);
         stage.show();
     }
@@ -59,12 +75,11 @@ public class v_Menu {
             instancia = new v_Menu(stage, usu);
             System.out.println("Se instanció v_Menu");
         }else{
-            stage.setTitle("Menú: "+usu.getNombre()+" - "+ usu.getRol());
+            stage.setTitle("Menú: " + usu.getNombre() + " - " + usu.getRol());
             stage.setScene(instancia.scen);
             stage.show();
             System.out.println("Se reutilizó v_Menu");
         }
         return instancia;
     }
-
 }
