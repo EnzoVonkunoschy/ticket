@@ -17,7 +17,8 @@ public class v_NuevoUsuario {
     private TextField txtPassword;
     private Label     lblMobil;
     private TextField txtMobil;
-    private ComboBox<String> cmbRol;
+    private Label lblRol;
+    private TextField txtRol;
     private Button    btnAceptar;
     private Button    btnVolver;
 
@@ -33,18 +34,18 @@ public class v_NuevoUsuario {
         txtPassword    = new TextField();
         lblMobil       = new Label("Teléfono: ");
         txtMobil       = new TextField();
-        cmbRol       = new ComboBox<>();
+        lblRol       = new Label("Rol: ");
+        txtRol       = new TextField();
         btnAceptar     = new Button("Aceptar");
         btnVolver      = new Button("Volver");
 
-        panel.getChildren().addAll(lblDescripcion, lblNombre, txtNombre, lblPassword, txtPassword, lblMobil, txtMobil,cmbRol, btnAceptar, btnVolver);
-        cmbRol.getItems().addAll("administrador", "usuario");
-        cmbRol.setPromptText("rol");
+        panel.getChildren().addAll(lblDescripcion, lblNombre, txtNombre, lblPassword, txtPassword, lblMobil, txtMobil,lblRol,txtRol, btnAceptar, btnVolver);
+
         btnAceptar.setOnAction(e->{
             String nomUsu = txtNombre.getText();
             String passUsu = txtPassword.getText();
             String mobUsu = txtMobil.getText();
-            String rolUsu = cmbRol.getValue();
+            String rolUsu = txtRol.getText();
 
 
             if(nomUsu.length() > 0 && passUsu.length() > 0) {
