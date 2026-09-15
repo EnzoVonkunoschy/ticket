@@ -3,31 +3,71 @@ package com.example.ticket;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class v_NuevoUsuario {
     private static v_NuevoUsuario instancia;
 
-    private Scene  scene;
-    private Label  lblDescripcion;
-    private Button btnVolver;
+    private Scene     scene;
+    private Label     lblDescripcion;
+    private Label     lblNombre;
+    private TextField txtNombre;
+    private Label     lblClave;
+    private TextField txtClave;
+    private Label     lblMobil;
+    private TextField txtMobil;
+    private Label     lblRol;
+    private TextField txtRol;
+    private Button    btnAceptar;
+    private Button    btnVolver;
 
     private v_NuevoUsuario(Stage stage, Usuario usuario) {
         lblDescripcion = new Label("Nuevo Usuario");
+        lblNombre      = new Label("Nombre:");
+        txtNombre      = new TextField();
+        lblClave       = new Label("Contraseña:");
+        txtClave       = new TextField();
+        lblMobil       = new Label("Móvil:");
+        txtMobil       = new TextField();
+        lblRol         = new Label("Rol:");
+        txtRol         = new TextField();
+        btnAceptar     = new Button("Aceptar");
         btnVolver      = new Button("Volver");
 
         VBox panel = new VBox();
 
-        panel.getChildren().addAll(lblDescripcion, btnVolver);
+        panel.getChildren().addAll(
+                lblDescripcion,
+                lblNombre, txtNombre,
+                lblClave, txtClave,
+                lblMobil, txtMobil,
+                lblRol, txtRol,
+                btnAceptar,
+                btnVolver
+        );
 
-        btnVolver.setOnAction(e->{
+        btnAceptar.setOnAction(e -> {
+            String nom = txtNombre.getText();
+            String cla = txtClave.getText();
+            String mob = txtMobil.getText();
+            String rol = txtRol.getText();
+            if (nom != null && !nom.trim().isEmpty()) {
+                Usuario nuevoUsuario = new Usuario(nom, cla, mob, rol);
+                Controlador controlador = Controlador.getInstancia();
+                controlador.agregarUsuario(nuevoUsuario, usuario);
+            }
+            v_Menu menu = v_Menu.getInstancia(stage, usuario);
+        });
+
+        btnVolver.setOnAction(e -> {
             v_Menu menu = v_Menu.getInstancia(stage, usuario);
         });
 
         scene = new Scene(panel, 640, 480);
 
-        stage.setTitle("Nuevo usuario"+usuario.getNombre()+" - "+ usuario.getRol());
+        stage.setTitle("Nuevo usuario" + usuario.getNombre() + " - " + usuario.getRol());
         stage.setScene(scene);
         stage.show();
     }
@@ -35,9 +75,12 @@ public class v_NuevoUsuario {
     public static v_NuevoUsuario getInstancia(Stage stage, Usuario usuario){
         if(instancia == null){
             instancia = new v_NuevoUsuario(stage, usuario);
-
         }else{
-            stage.setTitle("Nuevo usuario"+usuario.getNombre()+" - "+ usuario.getRol());
+            instancia.txtNombre.clear();
+            instancia.txtClave.clear();
+            instancia.txtMobil.clear();
+            instancia.txtRol.clear();
+            stage.setTitle("Nuevo usuario" + usuario.getNombre() + " - " + usuario.getRol());
             stage.setScene(instancia.scene);
             stage.show();
         }
