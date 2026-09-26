@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.controlsfx.control.PropertySheet;
+//import org.controlsfx.control.PropertySheet;
 
 
 import java.util.ArrayList;

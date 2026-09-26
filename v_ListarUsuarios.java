@@ -26,29 +26,33 @@ public class v_ListarUsuarios {
         btnVolver   = new Button("Volver");
         btnEliminar = new Button("Eliminar");
 
-        ArrayList<Usuario> colUser = modelo.dameUsuarios();
-        System.out.println(colUser);
+        ArrayList<Usuario> colUsu = controlador.dameUsuarios(usu);
+        if (colUsu == null) {
+            colUsu = modelo.dameUsuarios();
+        }
+        System.out.println(colUsu);
 
-        ObservableList<Usuario> observableList = FXCollections.observableArrayList(colUser);
+        ObservableList<Usuario> observableList = FXCollections.observableArrayList(colUsu);
 
         TableView<Usuario> tableView = new TableView<>(observableList);
 
         TableColumn<Usuario, String> nombreCol = new TableColumn<>("Nombre");
         nombreCol.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getNombre()));
-        TableColumn<Usuario, String> mobilCol = new TableColumn<>("Móvil");
 
+        TableColumn<Usuario, String> claveCol = new TableColumn<>("Clave");
+        claveCol.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getClave()));
+
+        TableColumn<Usuario, String> mobilCol = new TableColumn<>("Móvil");
         mobilCol.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getMobil()));
 
         TableColumn<Usuario, String> rolCol = new TableColumn<>("Rol");
         rolCol.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getRol()));
 
-        tableView.getColumns().addAll(nombreCol, mobilCol, rolCol);
+        tableView.getColumns().addAll(nombreCol, claveCol, mobilCol, rolCol);
 
-
-
-        // Comportamiento
-        btnVolver.setOnAction(e->{
-            System.out.printf("Menu <-- ListarUsuarios\n");
+        // comportamiento
+        btnVolver.setOnAction(e -> {
+            System.out.printf("Menu <-- ListarUsuarios");
             v_Menu.getInstancia(st, usu);
         });
 
@@ -57,7 +61,7 @@ public class v_ListarUsuarios {
             if (seleccionada != null) {
                 Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
                 alerta.setTitle("Confirmar eliminación");
-                alerta.setHeaderText("¿Estás seguro que querés eliminar este Usuario?");
+                alerta.setHeaderText("¿Estás seguro que querés eliminar este usuario?");
                 alerta.setContentText("Usuario: " + seleccionada.getNombre());
 
                 alerta.showAndWait().ifPresent(respuesta -> {
@@ -71,17 +75,17 @@ public class v_ListarUsuarios {
 
         VBox panel = new VBox(tableView);
         panel.getChildren().addAll(btnVolver, btnEliminar);
-
-        this.scene = new Scene(panel, 300, 300);
+        scene = new Scene(panel, 400, 350);
 
         st.setTitle("Listado de Usuarios");
-        st.setScene(this.scene);
-        st.show();
+        st.setScene(scene);
     }
 
     public static v_ListarUsuarios getInstancia(Stage st, Usuario usu) {
         instancia = new v_ListarUsuarios(st, usu);
+        st.setTitle("Listado de Usuarios");
+        st.setScene(instancia.scene);
+        st.show();
         return instancia;
     }
-
 }

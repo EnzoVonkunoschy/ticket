@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.geometry.Pos;
 
 public class v_Menu {
 
@@ -24,6 +25,9 @@ public class v_Menu {
 
     private v_Menu(Stage stage, Usuario usu){
         panel = new VBox();
+
+        panel.setSpacing(20);
+        panel.setAlignment(Pos.CENTER);
 
         label = new Label("Menú:");
 
@@ -49,6 +53,9 @@ public class v_Menu {
             v_NuevoUsuario nuevoUsuario =v_NuevoUsuario.getInstancia(stage, usu);
         });
         btnListarUsuarios.setOnAction(event -> {
+            v_ListarUsuarios.getInstancia(stage, usu);
+        });
+        btnListarUsuarios.setOnAction(e->{
             v_ListarUsuarios.getInstancia(stage, usu);
         });
 
