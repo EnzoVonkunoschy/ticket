@@ -31,6 +31,7 @@ public class v_Menu {
 
         label = new Label("Menú:");
 
+        btnListarUsuarios = new Button ("Listar Usuarios");
         btnNuevaOficina   = new Button("Nueva Oficina");
         btnListarOficinas = new Button("Listar Oficinas");
         btnNuevoUsuario   = new Button("Nuevo Usuario");
