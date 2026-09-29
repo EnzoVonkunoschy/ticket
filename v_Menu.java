@@ -34,6 +34,7 @@ public class v_Menu {
         btnNuevaOficina   = new Button("Nueva Oficina");
         btnListarOficinas = new Button("Listar Oficinas");
         btnNuevoUsuario   = new Button("Nuevo Usuario");
+        btnListarUsuarios = new Button("Listar usuarios");
         btnSalir          = new Button("Salir");
 
         panel.getChildren().addAll(label, btnNuevaOficina, btnListarOficinas, btnNuevoUsuario,btnListarUsuarios, btnSalir);
