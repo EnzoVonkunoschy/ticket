@@ -35,6 +35,7 @@ public class Seguridad {
 
         for(Usuario usua : listaUsuarios){
             System.out.println(usua);
+
             if (usua.getNombre().equals(usu) && usua.getClave().equals(cla)){
                 System.out.println("Usuario encontrado");
                 System.out.println(usua);

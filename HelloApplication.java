@@ -22,8 +22,8 @@ public class HelloApplication extends Application {
 
     private TextField texUser = new TextField();
 
-    boolean produccion = false;
-    //boolean produccion = true;
+    //boolean produccion = false;
+    boolean produccion = true;
 
     @Override
     public void start(Stage stage) {
@@ -51,7 +51,6 @@ public class HelloApplication extends Application {
     }
 
     public void test(){
-
 
     }
 
