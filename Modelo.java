@@ -116,6 +116,7 @@ public class Modelo {
     String ruta = System.getProperty("user.dir");
     String storage = ruta + "\\src\\main\\java\\com\\example\\";
     String storageUsuarios = storage + "usuarios.txt";
+      //System.out.println(storageUsuarios + " existe: " + new java.io.File(storageUsuarios).exists());
 
     ArrayList<Usuario> objetx = LocalStorage.getItem(storageUsuarios);
     if (objetx == null) {

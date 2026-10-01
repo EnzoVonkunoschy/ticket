@@ -41,11 +41,14 @@ public class v_Login {
         Seguridad seguridad = Seguridad.getInstancia();
         but.setOnAction(e -> {
             System.out.println("button pushed...");
-            //Usuario validado = seguridad.validar(this.txtUser.getText(),this.txtPass.getText());
-           Usuario validado = seguridad.validar("Bob Esponja","4321");
+            Usuario validado = seguridad.validar(this.txtUser.getText(),this.txtPass.getText());
+           //Usuario validado = seguridad.validar("Bob Esponja","4321");
             if( validado != null  ){
-
-                v_Menu.getInstancia(stage, validado);
+                if (validado.getRol().equals("admin")) {
+                    v_Menu.getInstancia(stage, validado);
+                }else{
+                    v_Usuario.getInstancia(stage, validado);
+                }
             }else{
                 lblErro.setVisible(true);
                 System.out.println("Error de login!");
