@@ -27,7 +27,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) {
-        if(produccion) {
+        /*if(produccion) {
             test(); // Se agrega aquí para garantizar la existencia de los usuarios
             Controlador controlador = Controlador.getInstancia();
             Seguridad seguridad = Seguridad.getInstancia();
@@ -36,11 +36,21 @@ public class HelloApplication extends Application {
 
         }else {
             test();
+        }*/
+        if(produccion) {
+            test();
+            Controlador controlador = Controlador.getInstancia();
+            Seguridad seguridad = Seguridad.getInstancia();
+
+            v_Login miLogin = v_Login.getInstancia(stage);
+
+        }else {
+            Usuario usuPrueba = new Usuario("Bob Esponja", "1234", "2583002918", "Usuario");
+            v_Usuario.getInstancia(stage, usuPrueba);
         }
     }
 
     public void test(){
-
 
     }
 
