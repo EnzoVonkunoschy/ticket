@@ -25,6 +25,8 @@ public class HelloApplication extends Application {
     //boolean produccion = false;
     boolean produccion = true;
 
+
+
     @Override
     public void start(Stage stage) {
         /*if(produccion) {
@@ -45,8 +47,8 @@ public class HelloApplication extends Application {
             v_Login miLogin = v_Login.getInstancia(stage);
 
         }else {
-            Usuario usuPrueba = new Usuario("Bob Esponja", "1234", "2583002918", "Usuario");
-            v_Usuario.getInstancia(stage, usuPrueba);
+            Usuario usuPrueba = new Usuario("Bob Esponja", "1234", "2583002918", "admin");
+            v_Menu.getInstancia(stage, usuPrueba);
         }
     }
 

@@ -22,8 +22,8 @@ public class v_Usuario {
         lblUsuario       = new Label("Usuario: " + usu.getNombre());
         btnCT   = new Button("Crear Ticket");
         btnVerMisTickets = new Button("Ver mis Tickets");
-
-        panel.getChildren().addAll(lblUsuario, btnCT, btnVerMisTickets);
+        btnCrearMensaje  = new Button("Crear Mensaje");
+        panel.getChildren().addAll(lblUsuario, btnCT, btnVerMisTickets, btnCrearMensaje);
 
         btnCT.setOnAction(e->{
 
@@ -33,12 +33,17 @@ public class v_Usuario {
 
         });
 
+        btnCrearMensaje.setOnAction(e -> {
+            v_CrearMensaje.getInstancia(stage, usu);
+        });
         scene = new Scene(panel, 640, 480);
 
         stage.setTitle(usu.getNombre() + "     " + usu.getRol());
         stage.setScene(scene);
         stage.show();
     }
+
+    private Button btnCrearMensaje;
 
     public static v_Usuario getInstancia(Stage stage, Usuario usu){
         if(instancia == null){
