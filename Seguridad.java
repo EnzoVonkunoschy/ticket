@@ -60,4 +60,8 @@ public class Seguridad {
         }
 
     }
+    public ArrayList<Usuario> dameUsuarios(Usuario enSesion) {
+        return controlador.dameUsuarios(enSesion);
+    }
+
 }

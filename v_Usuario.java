@@ -28,7 +28,7 @@ public class v_Usuario {
         panel.getChildren().addAll(lblUsuario, btnCT, btnVerMisTickets, btnVolver);
 
         btnCT.setOnAction(e->{
-
+            V_Mensaje.getInstancia(stage, usu);
         });
 
         btnVerMisTickets.setOnAction(e->{
