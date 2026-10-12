@@ -44,6 +44,8 @@ public class v_Login {
             //Usuario validado = seguridad.validar("Bob Esponja","4321");
             Usuario validado = seguridad.validar(this.txtUser.getText(),this.txtPass.getText());
             if( validado != null  ){
+                txtUser.clear();
+                txtPass.clear();
 
                 if ("admin".equals(validado.getRol())) {
                     v_Menu.getInstancia(stage, validado);
