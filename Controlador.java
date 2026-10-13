@@ -79,6 +79,20 @@ public class Controlador implements gestionarUsuarios {
        return null;
     }
 
+
+    /**
+     * Devuelve las oficinas disponibles para la vista Crear Mensaje.
+     *
+     * Se agrega un método específico para no modificar la regla existente
+     * de dameOficinas(), que actualmente está limitada al rol admin.
+     */
+    public ArrayList<Oficina> dameOficinasParaMensajes(Usuario user){
+        if(user != null){
+            return modelo.dameOficinas();
+        }
+        return new ArrayList<>();
+    }
+
     // Usuarios --------------------------------
 
 

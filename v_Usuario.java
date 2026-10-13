@@ -13,6 +13,7 @@ public class v_Usuario {
     private Label  lblUsuario;
     private Button btnCT;
     private Button btnVerMisTickets;
+    private Button btnVolver;
 
     private Scene  scene;
 
@@ -22,15 +23,19 @@ public class v_Usuario {
         lblUsuario       = new Label("Usuario: " + usu.getNombre());
         btnCT   = new Button("Crear Ticket");
         btnVerMisTickets = new Button("Ver mis Tickets");
+        btnVolver = new Button("Volver");
 
-        panel.getChildren().addAll(lblUsuario, btnCT, btnVerMisTickets);
+        panel.getChildren().addAll(lblUsuario, btnCT, btnVerMisTickets, btnVolver);
 
         btnCT.setOnAction(e->{
-
+            v_CrearMensaje.getInstancia(stage, usu);
         });
 
         btnVerMisTickets.setOnAction(e->{
 
+        });
+        btnVolver.setOnAction(e->{
+            v_Menu.getInstancia(stage,usu);
         });
 
         scene = new Scene(panel, 640, 480);
