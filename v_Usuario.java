@@ -13,24 +13,30 @@ public class v_Usuario {
     private Label  lblUsuario;
     private Button btnCT;
     private Button btnVerMisTickets;
+    private Button btnVolver;
 
     private Scene  scene;
 
     private v_Usuario(Stage stage, Usuario usu){
         VBox panel       = new VBox();
 
-        lblUsuario       = new Label("Usuario: " + usu.getNombre());
-        btnCT   = new Button("Crear Ticket");
+        lblUsuario = new Label("Usuario: " + usu.getNombre());
+        btnCT = new Button("Crear Ticket");
         btnVerMisTickets = new Button("Ver mis Tickets");
+        btnVolver = new Button("Volver");
 
-        panel.getChildren().addAll(lblUsuario, btnCT, btnVerMisTickets);
+        panel.getChildren().addAll(lblUsuario, btnCT, btnVerMisTickets, btnVolver);
 
         btnCT.setOnAction(e->{
-
+            V_Mensaje.getInstancia(stage, usu);
         });
 
         btnVerMisTickets.setOnAction(e->{
 
+        });
+
+        btnVolver.setOnAction(e ->{
+            v_Login.getInstancia(stage);
         });
 
         scene = new Scene(panel, 640, 480);

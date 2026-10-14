@@ -45,6 +45,14 @@ public class Oficina implements Observador, Serializable {
     }
 
     public boolean equals(Object obj){
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || !(obj instanceof Oficina)) {
+            return false;
+        }
+
         Oficina ofi = (Oficina) obj;
         return this.nombre.equals(ofi.nombre);
     }
