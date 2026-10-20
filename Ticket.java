@@ -28,7 +28,7 @@ public class Ticket  implements Sujeto {
     }
 
     public String toString(){
-        String str = "";
+        String str = "\n-----TICKET------:";
         str += "\nTICKET id: "+this.id;
         for( int i=0 ; i<this.entradas.size() ; i++){
             str += this.entradas.get(i).toString();

@@ -82,8 +82,9 @@ public class V_Mensaje {
                 return;
             }
 
-            Mensaje mensaje = new Mensaje(destinatario, texto);
-            System.out.println(mensaje.toString());
+            Entrada entrada = new Entrada(texto, usuario, destinatario);
+            Ticket ticket = new Ticket(entrada);
+            System.out.println(ticket);
 
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Mensaje creado");

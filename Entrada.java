@@ -3,12 +3,12 @@ package com.example.ticket;
 public class Entrada {
     private String texto;
     private Usuario autor;
-    private String nomOficina;
+    private Object destinatario;
 
-    public Entrada(String txt, Usuario aut, String nomOfic){
+    public Entrada(String txt, Usuario aut, Object destinatario){
         this.texto = txt;
         this.autor = aut;
-        this.nomOficina = nomOfic;
+        this.destinatario = destinatario;
     }
 
     public void setAutor(Usuario autor) {
@@ -16,8 +16,8 @@ public class Entrada {
     }
 
     public String toString(){
-        String str = "\n";
-        str += this.texto +"\nAutor: "+this.autor.getNombre()+" - Oficina: "+this.nomOficina;
+        String str = "\n-----------------:";
+        str +="\nRemitente: "+this.autor.getNombre()+"\nDestinatario: "+this.destinatario+"\nMensaje: "+this.texto;
         return str;
     }
 
