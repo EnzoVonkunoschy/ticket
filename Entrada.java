@@ -1,6 +1,6 @@
 package com.example.ticket;
-
-public class Entrada {
+import java.io.Serializable;
+public class Entrada implements Serializable {
     private String texto;
     private Usuario autor;
     private String nomOficina;

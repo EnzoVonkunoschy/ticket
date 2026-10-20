@@ -1,5 +1,5 @@
 package com.example.ticket;
-
+import java.util.ArrayList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.*;
@@ -28,11 +28,17 @@ public class v_Usuario {
         panel.getChildren().addAll(lblUsuario, btnCT, btnVerMisTickets, btnVolver);
 
         btnCT.setOnAction(e->{
-            V_Mensaje.getInstancia(stage, usu);
+            V_ticket.getInstancia(stage, usu);
         });
 
         btnVerMisTickets.setOnAction(e->{
-
+            ArrayList<Ticket> lista = Modelo.getInstancia().dameTickets();
+            System.out.println(lista);
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Mis Tickets");
+            alerta.setHeaderText("Tickets guardados:");
+            alerta.setContentText(lista.toString());
+            alerta.showAndWait();
         });
 
         btnVolver.setOnAction(e ->{

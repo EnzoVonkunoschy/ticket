@@ -6,18 +6,18 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 
-public class V_Mensaje {
+public class V_ticket {
 
-    private static V_Mensaje instancia;
+    private static V_ticket instancia;
 
     private ComboBox<Object> cmbDestinatario;
-    private TextArea txtMensaje;
+    private TextArea txtTicket;
     private VBox pane;
     private Scene scen;
 
-    private V_Mensaje(Stage stage, Usuario usuario) {
+    private V_ticket(Stage stage, Usuario usuario) {
 
-        Label titulo = new Label("Crear mensaje");
+        Label titulo = new Label("Crear ticket");
 
         Label lblDestinatario = new Label("Destinatario:");
         cmbDestinatario = new ComboBox<>();
@@ -37,11 +37,11 @@ public class V_Mensaje {
         }
 
         Label lblTexto = new Label("Texto:");
-        txtMensaje = new TextArea();
+        txtTicket = new TextArea();
 
-        txtMensaje.setPromptText("Escribí tu mensaje acá...");
-        txtMensaje.setPrefRowCount(8);
-        txtMensaje.setWrapText(true);
+        txtTicket.setPromptText("Escribí tu ticket acá...");
+        txtTicket.setPrefRowCount(8);
+        txtTicket.setWrapText(true);
 
         Button btnVolver = new Button("Volver");
         Button btnEnviar = new Button("Enviar");
@@ -52,7 +52,7 @@ public class V_Mensaje {
                 lblDestinatario,
                 cmbDestinatario,
                 lblTexto,
-                txtMensaje,
+                txtTicket,
                 btnVolver,
                 btnEnviar
         );
@@ -70,25 +70,33 @@ public class V_Mensaje {
         btnEnviar.setOnAction(e -> {
 
             Object destinatario = cmbDestinatario.getValue();
-            String texto = txtMensaje.getText();
+            String texto = txtTicket.getText();
 
             if (destinatario == null || texto.trim().isEmpty()) {
 
                 Alert alerta = new Alert(Alert.AlertType.WARNING);
                 alerta.setTitle("Datos incompletos");
                 alerta.setHeaderText(null);
-                alerta.setContentText("Seleccioná un destinatario y escribí un mensaje.");
+                alerta.setContentText("Seleccioná un destinatario y escribí un ticket.");
                 alerta.showAndWait();
                 return;
             }
 
-            Mensaje mensaje = new Mensaje(destinatario, texto);
-            System.out.println(mensaje.toString());
+            Ticket ticket = new Ticket(destinatario, texto);
+            Modelo.getInstancia().agregarTicket(ticket);
+            if (destinatario instanceof Oficina) {
+                Oficina ofi = (Oficina) destinatario;
+                ofi.recibirTicket(ticket);
+                Modelo.getInstancia().guardarOficinas(oficinas);
+            } else if (destinatario instanceof Usuario) {
+                Usuario UsuarioDestino = (Usuario) destinatario;
+
+            }
 
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setTitle("Mensaje creado");
+            alerta.setTitle("Ticket creado");
             alerta.setHeaderText(null);
-            alerta.setContentText("El mensaje se creó correctamente.");
+            alerta.setContentText("El ticket se creó correctamente.");
             alerta.showAndWait();
 
             instancia = null;
@@ -100,8 +108,8 @@ public class V_Mensaje {
         stage.show();
     }
 
-    public static V_Mensaje getInstancia(Stage stage, Usuario usuario) {
-        instancia = new V_Mensaje(stage, usuario);
+    public static V_ticket getInstancia(Stage stage, Usuario usuario) {
+        instancia = new V_ticket(stage, usuario);
         return instancia;
     }
 

@@ -2,14 +2,16 @@ package com.example.ticket;
 
 import java.util.ArrayList;
 import java.util.Objects;
-
+import java.io.Serializable;
 import java.util.List;
 
-public class Ticket  implements Sujeto {
+public class Ticket  implements Sujeto, Serializable {
+
     private final ArrayList<Entrada> entradas;
     private String id;
-
-    private List<Observador> observadores = new ArrayList<>();
+    private Object destinatario;
+    private String texto;
+    private transient List<Observador> observadores = new ArrayList<>();
     private String estado;
 
     public Ticket(Entrada ent){
@@ -18,9 +20,11 @@ public class Ticket  implements Sujeto {
         this.entradas.add(ent);
     }
 
-    public Ticket(){
+    public Ticket(Object destinatario, String texto){
         this.entradas = new ArrayList<>();
         this.id = Util.getUUid();
+        this.destinatario = destinatario;
+        this.texto = texto;
     }
 
     public String getId() {
@@ -28,11 +32,14 @@ public class Ticket  implements Sujeto {
     }
 
     public String toString(){
-        String str = "";
-        str += "\nTICKET id: "+this.id;
+        String str = "Inicio del ticket";
+        str += "\nTICKET id: "+this.id;// esto no deberia ir creo
+        str += "\nPara: " + this.destinatario;
+        str += "\nTexto/informacion: " + this.texto;
         for( int i=0 ; i<this.entradas.size() ; i++){
             str += this.entradas.get(i).toString();
         }
+        str += "\nFin del tickt";
 
         return str;
     }
@@ -58,6 +65,7 @@ public class Ticket  implements Sujeto {
     @Override
     public void agregarObservador(Observador obs) {
         System.out.println("--agregarObservador(Observador)-->[Ticket]");
+        if (observadores == null) observadores = new ArrayList<>();
         observadores.add(obs);
         notificarObservadores();
     }

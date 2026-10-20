@@ -122,5 +122,37 @@ public class Modelo {
         return new ArrayList<Usuario>();
     }
     return objetx;}
+    // seccuion ticketss
+    public void guardarTickets(ArrayList<Ticket> colTick){
+        String ruta = System.getProperty("user.dir");
+        String storage = ruta + "\\src\\main\\java\\com\\example\\";
+        String storageTickets = storage + "tickets.txt";
+
+        LocalStorage.setItem(storageTickets, colTick);
+    }
+
+    public ArrayList<Ticket> dameTickets() {
+        String ruta = System.getProperty("user.dir");
+        String storage = ruta + "\\src\\main\\java\\com\\example\\";
+        String storageTickets = storage + "tickets.txt";
+
+        ArrayList<Ticket> objetx = LocalStorage.getItem(storageTickets);
+        if (objetx == null) {
+            return new ArrayList<Ticket>();
+        }
+        return objetx;
+    }
+
+    public void agregarTicket(Ticket tick){
+        System.out.println("Modelo 'agregarTicket'");
+        ArrayList<Ticket> colTick = dameTickets();
+
+        if(!colTick.contains(tick)){
+            colTick.add(tick);
+        } else {
+            System.out.println("El ticket ya existe");//si quieren corregirlo por otrapalabra acepto recomendaciones
+        }
+        guardarTickets(colTick);
+    }
 
 }
