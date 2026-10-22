@@ -17,7 +17,7 @@ public class V_Mensaje {
 
     private V_Mensaje(Stage stage, Usuario usuario) {
 
-        Label titulo = new Label("Crear mensaje");
+        Label titulo = new Label("Crear ticket");
 
         Label lblDestinatario = new Label("Destinatario:");
         cmbDestinatario = new ComboBox<>();
@@ -89,7 +89,7 @@ public class V_Mensaje {
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Mensaje creado");
             alerta.setHeaderText(null);
-            alerta.setContentText("El mensaje se creó correctamente.");
+            alerta.setContentText("El ticket se creó correctamente.");
             alerta.showAndWait();
 
             instancia = null;

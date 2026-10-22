@@ -68,9 +68,6 @@ public class Usuario implements Serializable {
     // Opcional: método toString para visualización
     @Override
     public String toString() {
-        return "Usuario{" +
-                "nombre='" + nombre + '\'' +
-                ", rol='" + rol + '\'' +
-                '}';
+        return this.nombre;
     }
 }
