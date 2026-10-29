@@ -29,7 +29,7 @@ public class V_Mensaje {
 
         for (Usuario u : usuarios) {
             if (!u.equals(usuario)) {
-                cmbDestinatario.getItems().add(u);
+                cmbDestinatario.getItems().add(u.getNombre());
             }
         }
         for (Oficina o : oficinas) {
@@ -87,9 +87,9 @@ public class V_Mensaje {
             System.out.println(ticket);
 
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setTitle("Mensaje creado");
+            alerta.setTitle("Ticket creado");
             alerta.setHeaderText(null);
-            alerta.setContentText("El mensaje se creó correctamente.");
+            alerta.setContentText("El ticket se creó correctamente.");
             alerta.showAndWait();
 
             instancia = null;
