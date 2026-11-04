@@ -59,6 +59,9 @@ public class v_Menu {
         btnListarUsuarios.setOnAction(e->{
             v_ListarUsuarios.getInstancia(stage, usu);
         });
+        btnSalir.setOnAction(e->{
+            v_Login.getInstancia(stage);
+        });
 
         scen = new Scene(panel, 640,480);
 
